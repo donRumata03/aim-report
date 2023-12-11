@@ -17,6 +17,12 @@
 ]
 
 #slide[
+  = Операторы
+
+  -   
+]
+
+#slide[
   == Ближе к коду
 
 - Package core contains the main classes and scripts.
