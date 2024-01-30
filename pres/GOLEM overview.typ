@@ -1,17 +1,27 @@
 #import "../lib/presentation-template.typ": *
 #show: template.with(name: "Обзор GOLEM", time: 35, bad-projector: false, authors: "V")
 
-#let amark = place(top+right, dy: -20pt, dx: 2em, line(length: 20%, stroke: orange + 10pt))
-
-#let vmark = place(top+right, dy: -20pt, dx: 2em, line(length: 20%, stroke: purple + 10pt))
-
 #show list: it => {
   show list.item: set list(marker: text(sym.arrow.curve, font: "New Computer Modern Math"))
   it
 }
 
 #slide[
+  = История появления
+
+  Изначально была библиотека `FEDOT` для AutoML, основана на pipleline-ах ≈произвольной структуры (dag), поиск происходит посредством эволюции.
+  Но алгоритм графовой оптимизации оказался полезен и для кучи других задач, в т.ч. проектов лаборатории:
+  - BAMT (Bayesian AutoML Tool)
+  - NAS (Neural Architecture Search)
+  - GEFEST (#[*G*]enerative Evolution For Encoded STructures)
+  - пользовательские применения (коллаборация с химической лабораторией, например — btw полезный подход)
+  Поэтому было решено выделить эту часть в отдельную библиотеку — GOLEM.
+]
+
+#slide[
 == Глобально про алгоритм
+
+Тюнинг
 
 === Многокритериальная оптимизация
 ]
@@ -19,11 +29,19 @@
 #slide[
   = Операторы
 
-  -   
+  - Мутация
+  - Кроссовер
+    - `subtree` — выбрать 
+  - Селекция
+  - «Регуляризация»
 ]
 
 #slide[
   == Ближе к коду
+
+Язык: Python. Библиотеки:
+- joblib + multiprocessing
+- torch + karateclub для контекстуального бандита на GNN
 
 - Package core contains the main classes and scripts.
 - Package core.adapter is responsible for transformation between domain graphs and internal graph representation used by optimisers.
@@ -48,14 +66,27 @@ The sources of the documentation are in the docs directory.
 
 #slide[
   === Направления развития
+]
 
+#slide[
   ==== NOTEARS
+
+  #image("../res/notears-theorem.png")
+
+  → сводим к задаче непрерывной оптимизации; целевая функция и ограничения — дифференцируемы.
+  Решаем с помощью метода расширенной Лагранжианы.
+
+  Ограничения:
+  - Целевая функция должна естественно (дифференцируемо, поменьше константа Липшица, легко вычислима) продолжаться на вещественные веса
+  - Как задать на пространстве, содержащем категориальные переменные?
 
   ==== Метаэволюция
 
   
 
   ==== Коэволюция
+
+  см. Признаки
 
   ==== Поддержка разнообразия
 
