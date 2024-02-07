@@ -184,7 +184,9 @@ The sources of the documentation are in the docs directory.
 - Fitness, операторы
 - `@register_native`, e.g. `GraphVerifier`
 - Поставляется адаптер к NetworkX
-]]
+- Сейчас используется внутреннее представление в виде рукописного графа «на ссылках» в python
+]
+]
 
 #slide[
   == Сериализация
@@ -202,6 +204,18 @@ The sources of the documentation are in the docs directory.
   == Issues
 
 
+]
+
+#slide[
+  = Пример использования: BAMT
+  #image("../res/bamt-pipeline.png")
+]
+
+#slide[
+  Есть вещественные и непрерывные переменные, от этого зависит процесс обучения. Описано тут: 
+  #link("https://www.mdpi.com/2227-7390/11/2/343")[Advanced Approach for Distributions Parameters Learning in Bayesian Networks with Gaussian Mixture Models and Discriminative Models (2023)]
+
+  Тюнятся в порядке topsort-а DAG-а, для зависимости от дискретной используется CPT, для зависимости непрерывных — линейные, гауссовы зависимости, Gaussian mixture regression.
 ]
 
 #slide[
