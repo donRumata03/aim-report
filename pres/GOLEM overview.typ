@@ -84,7 +84,7 @@
     - Селекция архива: выбираем недоминированных, но если не соответствует целевому размеру:
       - Слишком большой: truncat-им по фитнессу (раз недоминированные, эквивалентно, по плотности): на каждому шагу убираем лексикографически меньшего по вектору расстояний до $k$-го ближайшего:
       #image("../res/spea2-truncation.png")
-      - Слишком маленький: добавляем eставшихся сортировкой по фитнессу.
+      - Слишком маленький: добавляем оставшихся сортировкой по фитнессу.
 ]
 
 #slide[
@@ -166,13 +166,15 @@
 ]
 
 #slide[
-  === #link("https://arxiv.org/abs/2012.01780")[Shallow exploration + deep representation]
+  === #link("https://arxiv.org/abs/2012.01780")[Shallow exploration & deep representation]
 
   Решают contextual MAB через нейросеть + LinUCB (сйечас пробуют $epsilon$-greedy, так как он не сходится полностью, в отличие от UCB, а ведь распределение наград может меняться).
 
-  Доказывают, что $tilde(O)(sqrt(T))$ regret.
+  Доказывают, что это обеспечивает $tilde(O)(sqrt(T))$ regret.
 
   см. статью.
+
+  Кроме того, перед этим трансформируют в fitness improvement в credit согласно этой статье: #link("https://ieeexplore.ieee.org/document/6410018")[Li, 2014].
 ]
 
 #slide[
@@ -217,6 +219,8 @@
 - joblib + multiprocessing
 - torch + mabwiser + karateclub для контекстуального бандита на GNN
 
+  _перемещаемся на демонстрацию экрана_
+
 - Package core contains the main classes and scripts.
 - Package core.adapter is responsible for transformation between domain graphs and internal graph representation used by optimisers.
 - Package core.dag contains classes and algorithms for representation and processing of graphs.
@@ -253,15 +257,9 @@ The sources of the documentation are in the docs directory.
 ]
 
 #slide[
-  == Evaluator
-
-
-]
-
-#slide[
   == Issues
 
-
+  _перемещаемся на демонстрацию экрана_
 ]
 
 #slide[
@@ -309,7 +307,13 @@ The sources of the documentation are in the docs directory.
 #slide[
   Потом на разных примерах показывают более хорошую асмиптотику expressive encoding-ов по сравнению с direct.
 
-  В нашем случае это может быть GNN с тривиальными мутациями.
+  В нашем случае кодировкой может быть
+  - графивые грамматики
+  - клеточное кодирование
+  - GNN
+  _с тривиальными мутациями/кроссоверами_.
+
+  #image("../res/cellular.png")
 ]
 
 #slide[
