@@ -223,7 +223,7 @@
 - joblib + multiprocessing
 - torch + mabwiser + karateclub для контекстуального бандита на GNN
 
-  _перемещаемся на демонстрацию экрана_
+  _перемещаемся на демонстрацию экрана с IDE_
 
 - Package core contains the main classes and scripts.
 - Package core.adapter is responsible for transformation between domain graphs and internal graph representation used by optimisers.
@@ -272,7 +272,7 @@ The sources of the documentation are in the docs directory.
 ]
 
 #slide[
-  Есть вещественные и непрерывные переменные, от этого зависит процесс обучения. Описано тут: 
+  Есть вещественные и непрерывные переменные, от этого зависит процесс обучения. Описано в статье про BAMT: 
   #link("https://www.mdpi.com/2227-7390/11/2/343")[Advanced Approach for Distributions Parameters Learning in Bayesian Networks with Gaussian Mixture Models and Discriminative Models (2023)]
 
   Тюнятся в порядке topsort-а DAG-а, для зависимости от дискретной используется CPT, для зависимости непрерывных — линейные, гауссовы зависимости, Gaussian mixture regression.
@@ -290,17 +290,30 @@ The sources of the documentation are in the docs directory.
 
 #slide[
   == Expressive encodings
-  - Прямо как в жизни — в геноме кодируется распределение, не просто какой-то конкретный фенотип, а больше информации. Заодно — и, частично, то, как проходит эволюция.
+  - Прямо как в жизни — в геноме кодируется распределение, не просто какой-то конкретный фенотип, а больше информации. Заодно — и, частично, то, как проходит эволюция. Например, генотип мужчины содержит информацию о том, каким бы он мог быть, если бы был женщиной — очень много избыточности, и в этом есть смысл.
 
   - Приближает к положению дел в ML, где используют достаточно абстрактные модели вместо экспертного знания.
 
-  #image("../res/expressive-encoding-definition.png")
 
+]
+
+#slide[
+  === Определение выразительной кодировки
+
+  #blockquote[Прообразы любого набора фенотипов, пропущенные через простой оператор, могут симулировать любое веростностное распределение с любой точностью, начиная с некоторого размера генома.]
+
+  #image("../res/expressive-encoding-definition.png")
+]
+
+#slide[
+  === Пример: miracle jump
+  
+  Стартуем с кучи нулей, хотим знать, можно ли с неисчезающей вероятностью кроссовером получить 
   #image("../res/miracle-jump.png")
 ]
 
 #slide[
-  == Примеры expressive encodings
+  === Примеры expressive encodings — теоремы про экспрессивность
   Complexity — размер генома, требуемый для фиксированного уровня аппроксимации.
   #image("../res/gp-expressive.png", width: 70%)
   #image("../res/nn-expressive.png", width: 70%)
@@ -309,7 +322,14 @@ The sources of the documentation are in the docs directory.
 ]
 
 #slide[
-  Потом на разных примерах показывают более хорошую асмиптотику expressive encoding-ов по сравнению с direct.
+  === Преимущества выразительных кодировок
+  Потом на разных примерах показывают более хорошую асмиптотику expressive encoding-ов по сравнению с direct; про скорость адаптации к меняющейся функции ошибки.
+
+  (см. статью)
+]
+
+#slide[
+  === Выразительные кодировки для графов
 
   В нашем случае кодировкой может быть
   - графивые грамматики
@@ -340,7 +360,7 @@ The sources of the documentation are in the docs directory.
 
   Пытаемся адаптировать гиперпараметры эволюции (частоту мутаций, размер популяции и т.д.). Похоже на предложение к GAMLET, но теперь эти параметры именно эволюционируют.
 
-  см. Parameter Control in Evolutionary Algorithms: Trends and Challenges
+  см. обзорную статью: Parameter Control in Evolutionary Algorithms: Trends and Challenges
 ]
 
 
