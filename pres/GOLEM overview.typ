@@ -366,10 +366,10 @@ The sources of the documentation are in the docs directory.
 
 #slide[
   == Коэволюция
-  см. proposal.
+  см. `proposal.pdf`
 ]
 
 #slide[
   == Поддержка разнообразия
-  см. proposal.
+  см. `proposal.pdf`
 ]
